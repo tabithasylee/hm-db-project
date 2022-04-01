@@ -15,24 +15,24 @@ const pages = {
     type: 'group',
     children: [
         {
-            id: 'authentication',
-            title: 'Authentication',
+            id: 'Tables',
+            title: 'Tables',
             type: 'collapse',
             icon: icons.IconKey,
 
             children: [
                 {
-                    id: 'login3',
-                    title: 'Login',
+                    id: 'table1',
+                    title: 'Table1',
                     type: 'item',
-                    url: '/pages/login/login3',
+                    url: '/table1',
                     target: true
                 },
                 {
-                    id: 'register3',
-                    title: 'Register',
+                    id: 'Table2',
+                    title: 'Table2',
                     type: 'item',
-                    url: '/pages/register/register3',
+                    url: '/table2',
                     target: true
                 }
             ]
