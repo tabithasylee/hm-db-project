@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -33,6 +33,18 @@ const rows = [
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const CustomersTable = ({ isLoading }) => {
+    const [customers, setCustomers] = useState([]);
+    useEffect(() => {
+        const getAllCustomers = async () => {
+            console.log('trying to fetch');
+            const response = await fetch(`http://localhost:5000/customers`);
+            const data = await response.json();
+            setCustomers(data);
+        };
+        getAllCustomers();
+        console.log(customers);
+    }, []);
+
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -62,23 +74,21 @@ const CustomersTable = ({ isLoading }) => {
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>Dessert (100g serving)</TableCell>
-                                                    <TableCell align="right">Calories</TableCell>
-                                                    <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                                    <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                                    <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                                                    <TableCell>Index</TableCell>
+                                                    <TableCell align="right">customer id</TableCell>
+                                                    <TableCell align="right">club_member_status</TableCell>
+                                                    <TableCell align="right">fashion_news_frequency</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                {rows.map((row) => (
-                                                    <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                {customers.map((customer, index) => (
+                                                    <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                                         <TableCell component="th" scope="row">
-                                                            {row.name}
+                                                            {index}
                                                         </TableCell>
-                                                        <TableCell align="right">{row.calories}</TableCell>
-                                                        <TableCell align="right">{row.fat}</TableCell>
-                                                        <TableCell align="right">{row.carbs}</TableCell>
-                                                        <TableCell align="right">{row.protein}</TableCell>
+                                                        <TableCell align="right">{customer.customer_id}</TableCell>
+                                                        <TableCell align="right">{customer.club_member_status}</TableCell>
+                                                        <TableCell align="right">{customer.fashion_news_frequency}</TableCell>
                                                     </TableRow>
                                                 ))}
                                             </TableBody>
