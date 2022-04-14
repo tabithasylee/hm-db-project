@@ -69,7 +69,7 @@ BEGIN
 END // 
 DELIMITER ;
 
-CALL compare_customer_vs_price("age");
+CALL compare_customer_vs_price("fashion_news_frequency");
 
 -- CALL get_customer_article_summary("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfc657", "product_type_name");
 -- CALL get_customer_article_summary("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfc657", "product_group_name");

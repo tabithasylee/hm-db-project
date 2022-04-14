@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS wardrobe;
-CREATE DATABASE wardrobe;
-USE wardrobe;
+DROP DATABASE IF EXISTS test;
+CREATE DATABASE test;
+USE test;
 
 CREATE TABLE IF NOT EXISTS articles_mega (
 	article_id VARCHAR(10) NOT NULL,
@@ -30,6 +30,67 @@ CREATE TABLE IF NOT EXISTS articles_mega (
     detail_desc VARCHAR(1000)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS articles_product_type (
+    product_type_no INT, 
+    product_type_name VARCHAR(50),
+    product_group_name VARCHAR(50),
+    PRIMARY KEY(product_type_no)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_graphical_appearance (
+	graphical_appearance_no VARCHAR(7) NOT NULL,
+    graphical_appearance_name VARCHAR(50),
+    PRIMARY KEY(graphical_appearance_no)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_colour_group (
+    colour_group_code SMALLINT,
+    colour_group_name VARCHAR(50),
+    PRIMARY KEY(colour_group_code)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_perceived_colour_value (
+    perceived_colour_value_id SMALLINT,
+    perceived_colour_value_name VARCHAR(50),
+    PRIMARY KEY(perceived_colour_value_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_perceived_colour_master (
+    perceived_colour_master_id SMALLINT,
+    perceived_colour_master_name VARCHAR(50),
+    PRIMARY KEY(perceived_colour_master_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_perceived_department (
+    department_no INT,
+    department_name VARCHAR(50),
+    PRIMARY KEY(department_no)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_index (
+    index_code VARCHAR(1),
+    index_name VARCHAR(50),
+    PRIMARY KEY(index_code)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_index_group (
+    index_group_no SMALLINT,
+    index_group_name VARCHAR(50),
+    PRIMARY KEY(index_group_no)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS articles_section (
+    section_no SMALLINT,
+    section_name VARCHAR(50),
+    PRIMARY KEY(section_no)
+)ENGINE=InnoDB; 
+
+CREATE TABLE IF NOT EXISTS articles_garment_group (
+    garment_group_no SMALLINT,
+    garment_group_name VARCHAR(50),
+    PRIMARY KEY(garment_group_no)
+)ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS articles (
 	article_id VARCHAR(10) NOT NULL,
 	product_code VARCHAR(7) NOT NULL,
@@ -45,121 +106,48 @@ CREATE TABLE IF NOT EXISTS articles (
     section_no SMALLINT,
     garment_group_no SMALLINT,
     detail_desc VARCHAR(1000),
-    PRIMARY KEY(article_id) 
-) ENGINE=InnoDB;
-
-
-
-
-CREATE TABLE IF NOT EXISTS articles_product_type (
-    product_type_no INT, 
-    product_type_name VARCHAR(50),
-    PRIMARY KEY(product_type_no),
-	CONSTRAINT fk_product_type_no FOREIGN KEY (product_type_no)
-		REFERENCES articles(product_type_no)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_product_type_group (
-    product_type_no INT,
-    product_group_name VARCHAR(50),
-    PRIMARY KEY(product_type_no),
+    PRIMARY KEY(article_id),
 	CONSTRAINT fk_product_type_group FOREIGN KEY (product_type_no)
-		REFERENCES articles(product_type_no)
+		REFERENCES articles_product_type(product_type_no)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_graphical_appearance (
-	graphical_appearance_no VARCHAR(7) NOT NULL,
-    graphical_appearance_name VARCHAR(50),
-    PRIMARY KEY(graphical_appearance_no),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_graphical_appearance_no FOREIGN KEY (graphical_appearance_no)
-		REFERENCES articles(graphical_appearance_no)
+		REFERENCES articles_graphical_appearance(graphical_appearance_no)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_colour_group (
-    colour_group_code SMALLINT,
-    colour_group_name VARCHAR(50),
-    PRIMARY KEY(colour_group_code),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_colour_group_code FOREIGN KEY (colour_group_code)
-		REFERENCES articles(colour_group_code)
+		REFERENCES articles_colour_group(colour_group_code)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_perceived_colour_value (
-    perceived_colour_value_id SMALLINT,
-    perceived_colour_value_name VARCHAR(50),
-    PRIMARY KEY(perceived_colour_value_id),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_perceived_colour_value_id FOREIGN KEY (perceived_colour_value_id)
-		REFERENCES articles(perceived_colour_value_id)
+		REFERENCES articles_perceived_colour_value(perceived_colour_value_id)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_perceived_colour_master (
-    perceived_colour_master_id SMALLINT,
-    perceived_colour_master_name VARCHAR(50),
-    PRIMARY KEY(perceived_colour_master_id),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_perceived_colour_master_id FOREIGN KEY (perceived_colour_master_id)
-		REFERENCES articles(perceived_colour_master_id)
+		REFERENCES articles_perceived_colour_master(perceived_colour_master_id)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_perceived_department (
-    department_no INT,
-    department_name VARCHAR(50),
-    PRIMARY KEY(department_no),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_department_no FOREIGN KEY (department_no)
-		REFERENCES articles(department_no)
+		REFERENCES articles_perceived_department(department_no)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_index (
-    index_code VARCHAR(1),
-    index_name VARCHAR(50),
-    PRIMARY KEY(index_code),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_index_code FOREIGN KEY (index_code)
-		REFERENCES articles(index_code)
+		REFERENCES articles_index(index_code)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_index_group (
-    index_group_no SMALLINT,
-    index_group_name VARCHAR(50),
-    PRIMARY KEY(index_group_name),
-	CONSTRAINT fk_index_group_name FOREIGN KEY (index_group_name)
-		REFERENCES articles(index_group_name)
+		ON UPDATE NO ACTION,
+	CONSTRAINT fk_index_group_name FOREIGN KEY (index_group_no)
+		REFERENCES articles_index_group(index_group_no)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_section (
-    section_no SMALLINT,
-    section_name VARCHAR(50),
-    PRIMARY KEY(section_no),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_section_no FOREIGN KEY (section_no)
-		REFERENCES articles(section_no)
+		REFERENCES articles_section(section_no)
 		ON DELETE NO ACTION
-		ON UPDATE NO ACTION
-);
-
-CREATE TABLE IF NOT EXISTS articles_garment_group (
-    garment_group_no SMALLINT,
-    garment_group_name VARCHAR(50),
-    PRIMARY KEY(garment_group_no),
+		ON UPDATE NO ACTION,
 	CONSTRAINT fk_garment_group_no FOREIGN KEY (garment_group_no)
-		REFERENCES articles(garment_group_no)
+		REFERENCES articles_garment_group(garment_group_no)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS customers (
 	customer_id VARCHAR(64) NOT NULL,
@@ -227,69 +215,11 @@ LOAD DATA
         detail_desc
     );
     
-INSERT INTO articles
-(SELECT
-	article_id,
-	product_code,
-    prod_name,
-    product_type_no,
-	graphical_appearance_no,
-    colour_group_code,
-    perceived_colour_value_id,
-    perceived_colour_master_id,
-    department_no,
-    index_code,
-    index_group_no,
-    section_no,
-    garment_group_no,
-    detail_desc
-FROM articles_mega);
-
-LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/customers.csv'
-    INTO TABLE customers
-    FIELDS 
-        TERMINATED BY ','
-    LINES
-        TERMINATED BY '\n'
-    IGNORE 1 LINES
-	(
-		customer_id,
-		@fn,
-		@active,
-		club_member_status,
-		fashion_news_frequency,
-		@age,
-		postal_code
-    )
-    SET fn = IF(@fn, "1", NULL), active = IF(@active, "1", NULL), age = IF(@age, @age, NULL);
-    
-LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/transactions.csv'
-    INTO TABLE transactions
-    FIELDS 
-        TERMINATED BY ','
-    LINES
-        TERMINATED BY '\n'
-    IGNORE 1 LINES
-	(
-		t_dat,
-		customer_id,
-		article_id,
-		price,
-		sales_channel_id
-    )
-    SET transaction_id = NULL;
 
 INSERT INTO articles_product_type
 (SELECT DISTINCT
 	product_type_no,
-    product_type_name
-FROM articles_mega);
-
-INSERT INTO articles_product_type_group
-(SELECT DISTINCT
-	product_type_no,
+    product_type_name,
     product_group_name
 FROM articles_mega);
 
@@ -346,7 +276,57 @@ INSERT INTO articles_garment_group
 	garment_group_no,
     garment_group_name
 FROM articles_mega);
+    
+INSERT INTO articles
+(SELECT
+	article_id,
+	product_code,
+    prod_name,
+    product_type_no,
+	graphical_appearance_no,
+    colour_group_code,
+    perceived_colour_value_id,
+    perceived_colour_master_id,
+    department_no,
+    index_code,
+    index_group_no,
+    section_no,
+    garment_group_no,
+    detail_desc
+FROM articles_mega);
 
-
-
-
+LOAD DATA
+    INFILE 'D:/Program_Files/wamp64/tmp/customers.csv'
+    INTO TABLE customers
+    FIELDS 
+        TERMINATED BY ','
+    LINES
+        TERMINATED BY '\n'
+    IGNORE 1 LINES
+	(
+		customer_id,
+		@fn,
+		@active,
+		club_member_status,
+		fashion_news_frequency,
+		@age,
+		postal_code
+    )
+    SET fn = IF(@fn, "1", NULL), active = IF(@active, "1", NULL), age = IF(@age, @age, NULL);
+    
+LOAD DATA
+    INFILE 'D:/Program_Files/wamp64/tmp/transactions.csv'
+    INTO TABLE transactions
+    FIELDS 
+        TERMINATED BY ','
+    LINES
+        TERMINATED BY '\n'
+    IGNORE 1 LINES
+	(
+		t_dat,
+		customer_id,
+		article_id,
+		price,
+		sales_channel_id
+    )
+    SET transaction_id = NULL;
