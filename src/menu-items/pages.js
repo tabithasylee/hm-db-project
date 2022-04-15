@@ -22,11 +22,10 @@ const pages = {
 
             children: [
                 {
-                    id: 'table1',
-                    title: 'Table1',
+                    id: 'customer_article_summary_table',
+                    title: 'Customer Article Summary Table',
                     type: 'item',
-                    url: '/table1',
-                    target: true
+                    url: '/summarytable'
                 },
                 {
                     id: 'Table2',

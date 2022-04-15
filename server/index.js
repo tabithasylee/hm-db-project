@@ -9,7 +9,9 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
   host: "localhost",
-  user: "root"
+  user: "root",
+  socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+  password: "root",
 });
 
 con.connect(function(err) {
@@ -36,7 +38,7 @@ app.get("/articles", async (req, res) => {
       res.status(404).send({ error: "failure accessing database" });
     }
   });
-  con.query("SELECT * FROM articles_mega LIMIT 10; ", function (err, result) {
+  con.query("SELECT * FROM articles LIMIT 10; ", function (err, result) {
     if (err) {
       console.log(err)
       res.status(404).send({ error: "failure getting article items" });
@@ -53,7 +55,7 @@ app.get("/customers", async (req, res) => {
       res.status(404).send({ error: "failure accessing database" });
     }
   });
-  con.query("SELECT * FROM customers_mega LIMIT 10; ", function (err, result) {
+  con.query("SELECT * FROM customers LIMIT 10; ", function (err, result) {
     if (err) {
       console.log(err)
       res.status(404).send({ error: "failure getting customer items" });
@@ -70,10 +72,47 @@ app.get("/transactions", async (req, res) => {
       res.status(404).send({ error: "failure accessing database" });
     }
   });
-  con.query("SELECT * FROM transactions_mega LIMIT 10; ", function (err, result) {
+  con.query("SELECT * FROM transactions LIMIT 10; ", function (err, result) {
     if (err) {
       console.log(err)
       res.status(404).send({ error: "failure getting transaction items" });
+    } else {
+      res.status(200).send(JSON.stringify(result));
+    }
+  });
+});
+
+// for customer_article_summary table
+app.get("/articlesummary", async (req, res) => {
+  console.log(req.query );
+  con.query("USE wardrobe;", function (err, result) {
+    if (err) {
+      console.log(err)
+      res.status(404).send({ error: "failure accessing database" });
+    }
+  });
+  con.query(`CALL get_customer_article_summary("${req.query.customerId}", "${req.query.attribute}");`, function (err, result) {
+    if (err) {
+      console.log(err)  
+      res.status(404).send({ error: "failure getting article items" });
+    } else {
+      res.status(200).send(JSON.stringify(result));
+    }
+  });
+});
+
+app.get("/transactionsummary", async (req, res) => {
+  console.log(req.query );
+  con.query("USE wardrobe;", function (err, result) {
+    if (err) {
+      console.log(err)
+      res.status(404).send({ error: "failure accessing database" });
+    }
+  });
+  con.query(`CALL get_customer_transactions("${req.query.customerId}");`, function (err, result) {
+    if (err) {
+      console.log(err)  
+      res.status(404).send({ error: "failure getting article items" });
     } else {
       res.status(200).send(JSON.stringify(result));
     }
