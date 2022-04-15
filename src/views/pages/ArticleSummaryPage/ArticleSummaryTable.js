@@ -32,7 +32,7 @@ const rows = [
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const SummaryTable = ({ isLoading, attributeName, tableData }) => {
+const ArticleSummaryTable = ({ isLoading, attributeName, tableData }) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -90,8 +90,10 @@ const SummaryTable = ({ isLoading, attributeName, tableData }) => {
     );
 };
 
-SummaryTable.propTypes = {
-    isLoading: PropTypes.bool
+ArticleSummaryTable.propTypes = {
+    isLoading: PropTypes.bool,
+    attributeName: PropTypes.string,
+    tableData: PropTypes.array
 };
 
-export default SummaryTable;
+export default ArticleSummaryTable;

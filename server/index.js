@@ -9,9 +9,7 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
-  password: "root",
+  user: "root"
 });
 
 con.connect(function(err) {

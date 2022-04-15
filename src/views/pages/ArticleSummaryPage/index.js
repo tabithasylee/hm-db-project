@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 
 // project imports
-import SummaryTable from './SummaryTable';
+import ArticleSummaryTable from './ArticleSummaryTable';
 import AttributeDropdown from './AttributeDropdown';
-import TableSearchBar from './TableSearchBar';
+import TableSearchBar from '../TableSearchBar';
 import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const SummaryTablePage = () => {
+const ArticleSummaryPage = () => {
     const [isLoading, setLoading] = useState(true);
     const [customerId, setCustomerId] = useState('');
     const [attribute, setAttribute] = useState('');
@@ -58,7 +58,7 @@ const SummaryTablePage = () => {
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <SummaryTable isLoading={isLoading} attributeName={tableData.attribute} tableData={tableData.data} />
+                        <ArticleSummaryTable isLoading={isLoading} attributeName={tableData.attribute} tableData={tableData.data} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -66,4 +66,4 @@ const SummaryTablePage = () => {
     );
 };
 
-export default SummaryTablePage;
+export default ArticleSummaryPage;
