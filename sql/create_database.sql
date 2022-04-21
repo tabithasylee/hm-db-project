@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS test;
-CREATE DATABASE test;
-USE test;
+DROP DATABASE IF EXISTS wardrobe;
+CREATE DATABASE wardrobe;
+USE wardrobe;
 
 CREATE TABLE IF NOT EXISTS articles_mega (
-	article_id VARCHAR(10) NOT NULL,
-	product_code VARCHAR(7) NOT NULL,
+	article_id VARCHAR(10) NOT NULL, # All article ids are strings of 10 characters
+	product_code VARCHAR(7) NOT NULL, # All product ids are strings of 10 characters
     prod_name VARCHAR(255),
     product_type_no INT,
     product_type_name VARCHAR(50),
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS articles_mega (
     detail_desc VARCHAR(1000)
 ) ENGINE=InnoDB;
 
+# We can decompose each of the "no" or "code" values further, as they correspond with the category name
 CREATE TABLE IF NOT EXISTS articles_product_type (
     product_type_no INT, 
     product_type_name VARCHAR(50),
@@ -91,6 +92,7 @@ CREATE TABLE IF NOT EXISTS articles_garment_group (
     PRIMARY KEY(garment_group_no)
 )ENGINE=InnoDB;
 
+# Create new decomposed table with foreign keys to the ones above
 CREATE TABLE IF NOT EXISTS articles (
 	article_id VARCHAR(10) NOT NULL,
 	product_code VARCHAR(7) NOT NULL,
@@ -149,6 +151,7 @@ CREATE TABLE IF NOT EXISTS articles (
 		ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
+# customers table does not need to be decomposed further
 CREATE TABLE IF NOT EXISTS customers (
 	customer_id VARCHAR(64) NOT NULL,
 	fn VARCHAR(1),
@@ -160,6 +163,7 @@ CREATE TABLE IF NOT EXISTS customers (
     PRIMARY KEY(customer_id) 
 ) ENGINE=InnoDB;
 
+# transactions table does not need to be decomposed further
 CREATE TABLE IF NOT EXISTS transactions (
 	transaction_id INT AUTO_INCREMENT, 
 	t_dat DATE,
@@ -315,7 +319,7 @@ LOAD DATA
     SET fn = IF(@fn, "1", NULL), active = IF(@active, "1", NULL), age = IF(@age, @age, NULL);
     
 LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/transactions.csv'
+    INFILE 'D:/Program_Files/wamp64/tmp/transactions_cut.csv'
     INTO TABLE transactions
     FIELDS 
         TERMINATED BY ','
@@ -330,3 +334,10 @@ LOAD DATA
 		sales_channel_id
     )
     SET transaction_id = NULL;
+    
+ALTER TABLE transactions
+ADD INDEX `transaction_index` (`transaction_id`, `customer_id`, `article_id`);
+ALTER TABLE transactions
+ADD INDEX `article_index` (`transaction_id`, `article_id`);
+ALTER TABLE transactions
+ADD INDEX `customer_index` (`transaction_id`, `customer_id`);
