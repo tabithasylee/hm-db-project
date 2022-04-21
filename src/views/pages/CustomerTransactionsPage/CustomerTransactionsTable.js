@@ -32,19 +32,7 @@ const rows = [
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const ArticlesTable = ({ isLoading }) => {
-    const [articles, setArticles] = useState([]);
-    useEffect(() => {
-        const getAllArticles = async () => {
-            console.log('trying to fetch');
-            const response = await fetch(`http://localhost:5000/articles`);
-            const data = await response.json();
-            setArticles(data);
-        };
-        getAllArticles();
-        console.log(articles);
-    }, []);
-
+const CustomerTransactionsTable = ({ isLoading, tableData }) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -68,29 +56,25 @@ const ArticlesTable = ({ isLoading }) => {
                             <Grid item xs={12}>
                                 <Grid container alignContent="center" justifyContent="space-between">
                                     <Grid item>
-                                        <Typography variant="h4">Articles Table</Typography>
+                                        <Typography variant="h4">Customer Transactions Table</Typography>
                                     </Grid>
                                     <TableContainer component={Paper}>
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>Article ID</TableCell>
-                                                    <TableCell align="right">Product Name</TableCell>
-                                                    <TableCell align="right">Product Type Number</TableCell>
-                                                    <TableCell align="right">Color Group Code</TableCell>
-                                                    <TableCell align="right">Description</TableCell>
+                                                    <TableCell>index</TableCell>
+                                                    <TableCell align="right">product name</TableCell>
+                                                    <TableCell align="right">price</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                {articles.map((article, index) => (
+                                                {tableData.map((row, index) => (
                                                     <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                                         <TableCell component="th" scope="row">
-                                                            {article.article_id}
+                                                            {index}
                                                         </TableCell>
-                                                        <TableCell align="right">{article.prod_name}</TableCell>
-                                                        <TableCell align="right">{article.product_type_no}</TableCell>
-                                                        <TableCell align="right">{article.colour_group_code}</TableCell>
-                                                        <TableCell align="right">{article.detail_desc}</TableCell>
+                                                        <TableCell align="right">{row.prod_name}</TableCell>
+                                                        <TableCell align="right">{row.price}</TableCell>
                                                     </TableRow>
                                                 ))}
                                             </TableBody>
@@ -106,8 +90,9 @@ const ArticlesTable = ({ isLoading }) => {
     );
 };
 
-ArticlesTable.propTypes = {
-    isLoading: PropTypes.bool
+CustomerTransactionsTable.propTypes = {
+    isLoading: PropTypes.bool,
+    tableData: PropTypes.object
 };
 
-export default ArticlesTable;
+export default CustomerTransactionsTable;

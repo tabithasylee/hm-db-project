@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 ) ENGINE=InnoDB;
 
 LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/articles.csv'
+    INFILE '/Users/alice/Documents/School/2021-2022/CS3265_Databases/project2/articles.csv'
     INTO TABLE articles_mega
     FIELDS 
         TERMINATED BY ','
@@ -300,7 +300,7 @@ INSERT INTO articles
 FROM articles_mega);
 
 LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/customers.csv'
+    INFILE '/Users/alice/Documents/School/2021-2022/CS3265_Databases/project2/customers.csv'
     INTO TABLE customers
     FIELDS 
         TERMINATED BY ','
@@ -319,7 +319,7 @@ LOAD DATA
     SET fn = IF(@fn, "1", NULL), active = IF(@active, "1", NULL), age = IF(@age, @age, NULL);
     
 LOAD DATA
-    INFILE 'D:/Program_Files/wamp64/tmp/transactions_cut.csv'
+    INFILE 'D:/Program_Files/wamp64/tmp/transactions.csv'
     INTO TABLE transactions
     FIELDS 
         TERMINATED BY ','
