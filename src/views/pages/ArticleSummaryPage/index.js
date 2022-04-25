@@ -44,6 +44,12 @@ const ArticleSummaryPage = () => {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={12}>
+                        <Typography variant="body" sx={{ paddingLeft: 2 }}>
+                            Given a customer_id and a specific article field, we can see how many of each article field a customer has
+                            purchased.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={12}>
                         <Typography variant="h4" sx={{ paddingLeft: 2 }}>
                             Customer Id
                         </Typography>
