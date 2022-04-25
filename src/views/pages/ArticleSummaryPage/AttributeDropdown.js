@@ -1,16 +1,22 @@
 // material-ui
 import React, { useState } from 'react';
 import { Grid, Box, TextField } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
+
+const StyledDropdown = styled(TextField, { shouldForwardProp })(({ theme }) => ({
+    width: 434,
+    '& input': {
+        background: 'transparent !important',
+        paddingLeft: '4px !important'
+    }
+}));
 
 // attribute options
 const attributes = [
     {
         value: 'product_type_name',
         label: 'Product Type'
-    },
-    {
-        value: 'product_group_name',
-        label: 'Product Group'
     },
     {
         value: 'graphical_appearance_name',
@@ -56,7 +62,7 @@ const AttributeDropdown = (props) => {
         <Grid container direction="column" spacing={2}>
             <Grid item xs={12}>
                 <Box sx={{ px: 2, pt: 0.25 }}>
-                    <TextField
+                    <StyledDropdown
                         id="outlined-select-currency-native"
                         select
                         fullWidth
@@ -71,7 +77,7 @@ const AttributeDropdown = (props) => {
                                 {option.label}
                             </option>
                         ))}
-                    </TextField>
+                    </StyledDropdown>
                 </Box>
             </Grid>
         </Grid>
