@@ -27,7 +27,13 @@ const edit = {
                     id: 'insert-article',
                     title: 'Insert Article',
                     type: 'item',
-                    url: '/insert-article'
+                    url: '/insert/article'
+                },
+                {
+                    id: 'insert-customer',
+                    title: 'Insert Customer',
+                    type: 'item',
+                    url: '/insert/customer'
                 },
                 {
                     id: 'util-typography',

@@ -10,6 +10,8 @@ const mysql = require('mysql');
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
+    // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+    // password: "root",
 });
 
 con.connect(function (err) {
@@ -154,6 +156,37 @@ app.post('/article', async (req, res) => {
             }
         }
     );
+});
+
+
+/**
+ * insert a customer
+ * @param {req.body.customer_id} - string
+ * @param {req.body.fn} - string
+ * @param {req.body.active} - string
+ * @param {req.body.club_member_status} - string
+ * @param {req.body.fashion_news_frequency} - string
+ * @param {req.body.age} - int
+ * @param {req.body.postal_code} - str
+ */
+ app.post('/customer', async (req, res) => {
+  console.log(req.body);
+  con.query('USE wardrobe;', function (err, result) {
+      if (err) {
+          console.log(err);
+          res.status(404).send({ error: 'failure accessing database' });
+      }
+  });
+  con.query(
+      `CALL insert_customer("${req.body.customer_id}", "${req.body.fn}", "${req.body.active}", "${req.body.club_member_status}", "${req.body.fashion_news_frequency}", ${req.body.age}, "${req.body.postal_code}");`,
+      function (err, result) {
+          if (err) {
+              res.status(404).send({ error: `${err}` });
+          } else {
+              res.status(200).send({result: JSON.stringify(result)});
+          }
+      }
+  );
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

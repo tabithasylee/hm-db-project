@@ -141,7 +141,7 @@ const InsertArticlePage = () => {
                     </Grid>
                     <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button size="large" color="secondary" variant="contained" onClick={handleSearchBtnClick}>
-                            Search
+                            Insert
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>

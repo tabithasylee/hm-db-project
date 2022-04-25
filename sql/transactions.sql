@@ -64,10 +64,10 @@ BEGIN
         
         IF sql_error = FALSE THEN
 			COMMIT;
-            SELECT 'The transaction was commited';
+            SELECT 'The transaction was commited.' as msg;
 		ELSE
 			ROLLBACK;
-            SELECT 'The transaction was rolled back.';
+            SELECT 'The transaction was rolled back.' as msg;
 		END IF;
 END // 
 DELIMITER ;

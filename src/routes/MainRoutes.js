@@ -13,6 +13,7 @@ const CustomerTransactionsPage = Loadable(lazy(() => import('views/pages/Custome
 
 // utilities routing
 const InsertArticlePage = Loadable(lazy(() => import('views/utilities/Insert/InsertArticlePage')));
+const InsertCustomerPage = Loadable(lazy(() => import('views/utilities/Insert/InsertCustomerPage')));
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
@@ -45,8 +46,12 @@ const MainRoutes = {
             element: <CustomerTransactionsPage />
         },
         {
-            path: '/insert-article',
+            path: '/insert/article',
             element: <InsertArticlePage />
+        },
+        {
+            path: '/insert/customer',
+            element: <InsertCustomerPage />
         },
         {
             path: '/utils/util-typography',
