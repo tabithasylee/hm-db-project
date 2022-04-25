@@ -217,4 +217,104 @@ app.post('/article', async (req, res) => {
   );
 });
 
+
+// ROUTES FOR UPDATE
+
+/**
+ * update an article
+ * @param {req.body.article_id} - string
+ * @param {req.body.product_code} - string
+ * @param {req.body.prod_name} - string
+ * @param {req.body.product_type_no} - int
+ * @param {req.body.graphical_appearance_no} - string
+ * @param {req.body.colour_group_code} - int
+ * @param {req.body.perceived_colour_value_id} - int
+ * @param {req.body.perceived_colour_master_id} - int
+ * @param {req.body.department_no} - int
+ * @param {req.body.index_code} - string
+ * @param {req.body.index_group_no} - int
+ * @param {req.body.section_no} - int
+ * @param {req.body.garment_group_no} - int
+ * @param {req.body.detail_desc} - string
+ */
+ app.put('/article', async (req, res) => {
+    console.log(req.body);
+    con.query('USE wardrobe;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure accessing database' });
+        }
+    });
+    con.query(
+        `CALL update_article("${req.body.article_id}", "${req.body.product_code}", "${req.body.prod_name}", ${req.body.product_type_no}, "${req.body.graphical_appearance_no}", ${req.body.colour_group_code}, ${req.body.perceived_colour_value_id}, ${req.body.perceived_colour_master_id}, ${req.body.department_no}, "${req.body.index_code}", ${req.body.index_group_no}, ${req.body.section_no}, ${req.body.garment_group_no}, "${req.body.detail_desc}");`,
+        function (err, result) {
+            if (err) {
+                res.status(404).send({ error: `${err}` });
+            } else {
+                res.status(200).send({result: JSON.stringify(result)});
+            }
+        }
+    );
+});
+
+
+/**
+ * update a customer
+ * @param {req.body.customer_id} - string
+ * @param {req.body.fn} - string
+ * @param {req.body.active} - string
+ * @param {req.body.club_member_status} - string
+ * @param {req.body.fashion_news_frequency} - string
+ * @param {req.body.age} - int
+ * @param {req.body.postal_code} - str
+ */
+ app.put('/customer', async (req, res) => {
+  console.log(req.body);
+  con.query('USE wardrobe;', function (err, result) {
+      if (err) {
+          console.log(err);
+          res.status(404).send({ error: 'failure accessing database' });
+      }
+  });
+  con.query(
+      `CALL update_customer("${req.body.customer_id}", "${req.body.fn}", "${req.body.active}", "${req.body.club_member_status}", "${req.body.fashion_news_frequency}", ${req.body.age}, "${req.body.postal_code}");`,
+      function (err, result) {
+          if (err) {
+              res.status(404).send({ error: `${err}` });
+          } else {
+              res.status(200).send({result: JSON.stringify(result)});
+          }
+      }
+  );
+});
+
+/**
+ * update a transaction
+ * @param {req.body.id} - int
+ * @param {req.body.t_dat} - date string YYYY-MM-DD
+ * @param {req.body.customer_id} - string
+ * @param {req.body.article_id} - string
+ * @param {req.body.price} - int
+ * @param {req.body.sales_channel_id} - string
+ */
+ app.put('/transaction', async (req, res) => {
+  console.log(req.body);
+  con.query('USE wardrobe;', function (err, result) {
+      if (err) {
+          console.log(err);
+          res.status(404).send({ error: 'failure accessing database' });
+      }
+  });
+  con.query(
+      `CALL update_transaction(${req.body.id}, CAST("${req.body.t_dat}" AS DATE), "${req.body.customer_id}", "${req.body.article_id}", "${req.body.price}", "${req.body.sales_channel_id}");`,
+      function (err, result) {
+          if (err) {
+              res.status(404).send({ error: `${err}` });
+          } else {
+              res.status(200).send({result: JSON.stringify(result)});
+          }
+      }
+  );
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

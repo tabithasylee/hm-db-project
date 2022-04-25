@@ -88,6 +88,21 @@ const edit = {
                     ]
                 }
             ]
+        },
+        {
+            id: 'update',
+            title: 'Update',
+            type: 'collapse',
+            icon: icons.IconKey,
+
+            children: [
+                {
+                    id: 'update-article',
+                    title: 'Update Article',
+                    type: 'item',
+                    url: '/update/article'
+                }
+            ]
         }
     ]
 };
