@@ -6,10 +6,13 @@ import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+
+// pages routing
 const ArticleSummaryPage = Loadable(lazy(() => import('views/pages/ArticleSummaryPage')));
 const CustomerTransactionsPage = Loadable(lazy(() => import('views/pages/CustomerTransactionsPage')));
 
 // utilities routing
+const InsertArticlePage = Loadable(lazy(() => import('views/utilities/Insert/InsertArticlePage')));
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
@@ -40,6 +43,10 @@ const MainRoutes = {
         {
             path: '/customer-transactions',
             element: <CustomerTransactionsPage />
+        },
+        {
+            path: '/insert-article',
+            element: <InsertArticlePage />
         },
         {
             path: '/utils/util-typography',

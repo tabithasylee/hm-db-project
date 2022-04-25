@@ -1,4 +1,4 @@
-USE wardrobe; 
+	USE wardrobe; 
 
 # A transaction to insert an article
 DROP PROCEDURE IF EXISTS insert_article;
@@ -31,10 +31,10 @@ BEGIN
         
         IF sql_error = FALSE THEN
 			COMMIT;
-            SELECT 'The transaction was commited';
+            SELECT 'The transaction was commited.' as msg;
 		ELSE
 			ROLLBACK;
-            SELECT 'The transaction was rolled back.';
+            SELECT 'The transaction was rolled back.' as msg;
 		END IF;
 END // 
 DELIMITER ;
@@ -114,7 +114,7 @@ CALL insert_transaction(CAST("2018-09-20" AS DATE),"00000dbacae5abe5e23885899a1f
 SELECT * FROM transactions WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 
 
-# A transaction to insert an article
+# A transaction to update an article
 DROP PROCEDURE IF EXISTS update_article;
 DELIMITER // 
 CREATE PROCEDURE update_article(
@@ -169,7 +169,7 @@ CALL update_article("0108723457", "0108775", "Strap top", 253, "1010016", 9, 4, 
 SELECT * FROM articles WHERE article_id = "0108723457";
 
 
-# A transaction to insert an customer
+# A transaction to update an customer
 DROP PROCEDURE IF EXISTS update_customer;
 DELIMITER // 
 CREATE PROCEDURE update_customer(
@@ -208,7 +208,7 @@ DELIMITER ;
 CALL update_customer("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123", 1, 1, "ACTIVE", "SOME", 49, "52043ee2162cf5aa7ee79974281641c6f11a68d276429a91f8ca0d4b6efa8100");
 SELECT * FROM customers WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 
-# A transaction to insert an transaction
+# A transaction to update an transaction
 DROP PROCEDURE IF EXISTS update_transaction;
 DELIMITER // 
 CREATE PROCEDURE update_transaction(

@@ -15,8 +15,8 @@ const pages = {
     type: 'group',
     children: [
         {
-            id: 'Tables',
-            title: 'Tables',
+            id: 'search',
+            title: 'Search',
             type: 'collapse',
             icon: icons.IconKey,
 
