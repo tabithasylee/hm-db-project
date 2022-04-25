@@ -36,6 +36,12 @@ const edit = {
                     url: '/insert/customer'
                 },
                 {
+                    id: 'insert-transaction',
+                    title: 'Insert Transaction',
+                    type: 'item',
+                    url: '/insert/transaction'
+                },
+                {
                     id: 'util-typography',
                     title: 'Typography',
                     type: 'item',

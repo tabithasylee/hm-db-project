@@ -10,8 +10,8 @@ const mysql = require('mysql');
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
-    // password: "root",
+    socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+    password: "root",
 });
 
 con.connect(function (err) {
@@ -179,6 +179,34 @@ app.post('/article', async (req, res) => {
   });
   con.query(
       `CALL insert_customer("${req.body.customer_id}", "${req.body.fn}", "${req.body.active}", "${req.body.club_member_status}", "${req.body.fashion_news_frequency}", ${req.body.age}, "${req.body.postal_code}");`,
+      function (err, result) {
+          if (err) {
+              res.status(404).send({ error: `${err}` });
+          } else {
+              res.status(200).send({result: JSON.stringify(result)});
+          }
+      }
+  );
+});
+
+/**
+ * insert a transaction
+ * @param {req.body.t_dat} - date string YYYY-MM-DD
+ * @param {req.body.customer_id} - string
+ * @param {req.body.article_id} - string
+ * @param {req.body.price} - int
+ * @param {req.body.sales_channel_id} - string
+ */
+ app.post('/transaction', async (req, res) => {
+  console.log(req.body);
+  con.query('USE wardrobe;', function (err, result) {
+      if (err) {
+          console.log(err);
+          res.status(404).send({ error: 'failure accessing database' });
+      }
+  });
+  con.query(
+      `CALL insert_transaction(CAST("${req.body.t_dat}" AS DATE), "${req.body.customer_id}", "${req.body.article_id}", "${req.body.price}", "${req.body.sales_channel_id}");`,
       function (err, result) {
           if (err) {
               res.status(404).send({ error: `${err}` });
