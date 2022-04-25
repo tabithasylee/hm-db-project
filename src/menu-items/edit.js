@@ -101,6 +101,18 @@ const edit = {
                     title: 'Update Article',
                     type: 'item',
                     url: '/update/article'
+                },
+                {
+                    id: 'update-customer',
+                    title: 'Update Customer',
+                    type: 'item',
+                    url: '/update/customer'
+                },
+                {
+                    id: 'update-transaction',
+                    title: 'Update Transaction',
+                    type: 'item',
+                    url: '/update/transaction'
                 }
             ]
         }
