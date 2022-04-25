@@ -32,6 +32,12 @@ const pages = {
                     title: 'Customer Transactions',
                     type: 'item',
                     url: '/customer-transactions'
+                },
+                {
+                    id: 'article_demographic_comparison_table',
+                    title: 'Article Demographic Comparison',
+                    type: 'item',
+                    url: '/demographic-comparison'
                 }
             ]
         }

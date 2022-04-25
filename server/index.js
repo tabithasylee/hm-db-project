@@ -82,6 +82,8 @@ app.get('/transactions', async (req, res) => {
     });
 });
 
+// ROUTES FOR SEARCH TABLES
+
 // for customer_article_summary table
 app.get('/articlesummary', async (req, res) => {
     console.log(req.query);
@@ -110,6 +112,29 @@ app.get('/transactionsummary', async (req, res) => {
         }
     });
     con.query(`CALL get_customer_transactions("${req.query.customerId}");`, function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure getting article items' });
+        } else {
+            res.status(200).send(JSON.stringify(result));
+        }
+    });
+});
+
+/**
+ * insert an article
+ * @param {req.query.productId} - string
+ * @param {req.query.attribiute} - string
+ * */
+app.get('/demographiccomparison', async (req, res) => {
+    console.log(req.query);
+    con.query('USE wardrobe;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure accessing database' });
+        }
+    });
+    con.query(`CALL compare_article_customer_demographic("${req.query.productId}", "${req.query.attribute}");`, function (err, result) {
         if (err) {
             console.log(err);
             res.status(404).send({ error: 'failure getting article items' });

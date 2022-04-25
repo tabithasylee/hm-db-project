@@ -10,6 +10,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 // pages routing
 const ArticleSummaryPage = Loadable(lazy(() => import('views/pages/ArticleSummaryPage')));
 const CustomerTransactionsPage = Loadable(lazy(() => import('views/pages/CustomerTransactionsPage')));
+const DemographicComparisonPage = Loadable(lazy(() => import('views/pages/DemographicComparisonPage')));
 
 // utilities routing
 const InsertArticlePage = Loadable(lazy(() => import('views/utilities/Insert/InsertArticlePage')));
@@ -48,6 +49,10 @@ const MainRoutes = {
         {
             path: '/customer-transactions',
             element: <CustomerTransactionsPage />
+        },
+        {
+            path: '/demographic-comparison',
+            element: <DemographicComparisonPage />
         },
         {
             path: '/insert/article',

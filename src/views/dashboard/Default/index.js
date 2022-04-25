@@ -7,6 +7,7 @@ import { Grid } from '@mui/material';
 import TransactionsTable from './TransactionsTable';
 import ArticlesTable from './ArticlesTable';
 import CustomersTable from './CustomersTable';
+import TotalGrowthBarChart from './TotalGrowthBarChart';
 import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
@@ -21,6 +22,9 @@ const Dashboard = () => {
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
+                    <Grid item xs={12} md={12}>
+                        <TotalGrowthBarChart isLoading={isLoading} />
+                    </Grid>
                     <Grid item xs={12} md={12}>
                         <TransactionsTable isLoading={isLoading} />
                     </Grid>

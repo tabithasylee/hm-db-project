@@ -128,7 +128,7 @@ const SearchSection = (props) => {
     const handleChange = (event) => {
         if (event?.target.value) {
             setValue(event?.target.value);
-            props.setCustomerId(event?.target.value);
+            props.setState(event?.target.value);
         }
     };
 
