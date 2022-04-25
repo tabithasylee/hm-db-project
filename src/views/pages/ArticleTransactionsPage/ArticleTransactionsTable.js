@@ -32,7 +32,7 @@ const rows = [
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const CustomerTransactionsTable = ({ isLoading, tableData }) => {
+const ArticleTransactionsTable = ({ isLoading, tableData }) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -56,13 +56,15 @@ const CustomerTransactionsTable = ({ isLoading, tableData }) => {
                             <Grid item xs={12}>
                                 <Grid container alignContent="center" justifyContent="space-between">
                                     <Grid item>
-                                        <Typography variant="h4">Customer Transactions Table</Typography>
+                                        <Typography variant="h4">Article Transactions Table</Typography>
                                     </Grid>
                                     <TableContainer component={Paper}>
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
                                                     <TableCell>index</TableCell>
+                                                    <TableCell align="right">date</TableCell>
+                                                    <TableCell align="right">customer id</TableCell>
                                                     <TableCell align="right">product name</TableCell>
                                                     <TableCell align="right">price</TableCell>
                                                 </TableRow>
@@ -73,6 +75,8 @@ const CustomerTransactionsTable = ({ isLoading, tableData }) => {
                                                         <TableCell component="th" scope="row">
                                                             {index}
                                                         </TableCell>
+                                                        <TableCell align="right">{row.t_dat}</TableCell>
+                                                        <TableCell align="right">{row.customer_id}</TableCell>
                                                         <TableCell align="right">{row.prod_name}</TableCell>
                                                         <TableCell align="right">{row.price}</TableCell>
                                                     </TableRow>
@@ -90,9 +94,9 @@ const CustomerTransactionsTable = ({ isLoading, tableData }) => {
     );
 };
 
-CustomerTransactionsTable.propTypes = {
+ArticleTransactionsTable.propTypes = {
     isLoading: PropTypes.bool,
     tableData: PropTypes.array
 };
 
-export default CustomerTransactionsTable;
+export default ArticleTransactionsTable;

@@ -22,9 +22,9 @@ const Dashboard = () => {
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
-                    <Grid item xs={12} md={12}>
+                    {/* <Grid item xs={12} md={12}>
                         <TotalGrowthBarChart isLoading={isLoading} />
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={12} md={12}>
                         <TransactionsTable isLoading={isLoading} />
                     </Grid>

@@ -86,7 +86,6 @@ app.get('/transactions', async (req, res) => {
 
 // for customer_article_summary table
 app.get('/articlesummary', async (req, res) => {
-    console.log(req.query);
     con.query('USE wardrobe;', function (err, result) {
         if (err) {
             console.log(err);
@@ -103,8 +102,7 @@ app.get('/articlesummary', async (req, res) => {
     });
 });
 
-app.get('/transactionsummary', async (req, res) => {
-    console.log(req.query);
+app.get('/customertransactions', async (req, res) => {
     con.query('USE wardrobe;', function (err, result) {
         if (err) {
             console.log(err);
@@ -122,12 +120,11 @@ app.get('/transactionsummary', async (req, res) => {
 });
 
 /**
- * insert an article
+ * demographic comparison procedure
  * @param {req.query.productId} - string
  * @param {req.query.attribiute} - string
  * */
 app.get('/demographiccomparison', async (req, res) => {
-    console.log(req.query);
     con.query('USE wardrobe;', function (err, result) {
         if (err) {
             console.log(err);
@@ -135,6 +132,27 @@ app.get('/demographiccomparison', async (req, res) => {
         }
     });
     con.query(`CALL compare_article_customer_demographic("${req.query.productId}", "${req.query.attribute}");`, function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure getting article items' });
+        } else {
+            res.status(200).send(JSON.stringify(result));
+        }
+    });
+});
+
+/**
+ * article transactions procedure
+ * @param {req.query.articleId} - string
+ * */
+ app.get('/articletransactions', async (req, res) => {
+    con.query('USE wardrobe;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure accessing database' });
+        }
+    });
+    con.query(`CALL transactions_from_article("${req.query.articleId}");`, function (err, result) {
         if (err) {
             console.log(err);
             res.status(404).send({ error: 'failure getting article items' });
@@ -164,7 +182,6 @@ app.get('/demographiccomparison', async (req, res) => {
  * @param {req.body.detail_desc} - string
  */
 app.post('/article', async (req, res) => {
-    console.log(req.body);
     con.query('USE wardrobe;', function (err, result) {
         if (err) {
             console.log(err);
@@ -195,7 +212,6 @@ app.post('/article', async (req, res) => {
  * @param {req.body.postal_code} - str
  */
  app.post('/customer', async (req, res) => {
-  console.log(req.body);
   con.query('USE wardrobe;', function (err, result) {
       if (err) {
           console.log(err);
@@ -223,7 +239,6 @@ app.post('/article', async (req, res) => {
  * @param {req.body.sales_channel_id} - string
  */
  app.post('/transaction', async (req, res) => {
-  console.log(req.body);
   con.query('USE wardrobe;', function (err, result) {
       if (err) {
           console.log(err);
@@ -263,7 +278,6 @@ app.post('/article', async (req, res) => {
  * @param {req.body.detail_desc} - string
  */
  app.put('/article', async (req, res) => {
-    console.log(req.body);
     con.query('USE wardrobe;', function (err, result) {
         if (err) {
             console.log(err);
@@ -294,7 +308,6 @@ app.post('/article', async (req, res) => {
  * @param {req.body.postal_code} - str
  */
  app.put('/customer', async (req, res) => {
-  console.log(req.body);
   con.query('USE wardrobe;', function (err, result) {
       if (err) {
           console.log(err);
@@ -323,7 +336,6 @@ app.post('/article', async (req, res) => {
  * @param {req.body.sales_channel_id} - string
  */
  app.put('/transaction', async (req, res) => {
-  console.log(req.body);
   con.query('USE wardrobe;', function (err, result) {
       if (err) {
           console.log(err);

@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 
 // project imports
-import CustomerTransactionsTable from './CustomerTransactionsTable';
+import ArticleTransactionsTable from './ArticleTransactionsTable';
 import TableSearchBar from '../TableSearchBar';
 import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const CustomerTransactionsPage = () => {
+const ArticleTransactionsPage = () => {
     const [isLoading, setLoading] = useState(true);
-    const [customerId, setCustomerId] = useState('');
+    const [articleId, setArticleId] = useState('');
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -20,13 +20,13 @@ const CustomerTransactionsPage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(customerId);
-    }, [customerId]);
+        console.log(articleId);
+    }, [articleId]);
 
     const handleSearchBtnClick = () => {
         const getTableData = async () => {
             console.log('trying to fetch search results');
-            const response = await fetch(`http://localhost:5000/customertransactions?customerId=${customerId}`);
+            const response = await fetch(`http://localhost:5000/articletransactions?articleId=${articleId}`);
             const data = await response.json();
             setTableData(data[0]);
         };
@@ -39,14 +39,14 @@ const CustomerTransactionsPage = () => {
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={12}>
                         <Typography variant="body" sx={{ paddingLeft: 2 }}>
-                            Enter a customer id to see their transactions.
+                            Enter a article id to see their transactions.
                         </Typography>
                     </Grid>
                     <Grid item xs={12} md={12}>
                         <Typography variant="h4" sx={{ paddingLeft: 2 }}>
-                            Customer Id
+                            Article Id
                         </Typography>
-                        <TableSearchBar setState={setCustomerId} />
+                        <TableSearchBar setState={setArticleId} />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button size="large" color="secondary" variant="contained" onClick={handleSearchBtnClick}>
@@ -54,7 +54,7 @@ const CustomerTransactionsPage = () => {
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <CustomerTransactionsTable isLoading={isLoading} tableData={tableData} />
+                        <ArticleTransactionsTable isLoading={isLoading} tableData={tableData} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -62,4 +62,4 @@ const CustomerTransactionsPage = () => {
     );
 };
 
-export default CustomerTransactionsPage;
+export default ArticleTransactionsPage;
