@@ -6,7 +6,7 @@ DELIMITER //
 CREATE PROCEDURE get_customer_transactions(IN p_customer_id VARCHAR(64))
 BEGIN
 	# Note that the price is scaled by 590 in the original dataset for privacy reasons, so when displaying we unscale it.
-	SELECT prod_name, ROUND((price * 590), 2) FROM transactions 
+	SELECT prod_name, ROUND((price * 590), 2) as price FROM transactions 
 	JOIN articles USING(article_id)
 	WHERE customer_id = p_customer_id;
 END // 
@@ -32,7 +32,7 @@ BEGIN
 		WHEN 'garment_group_name' THEN garment_group_name
 					ELSE NULL
 	  END AS translated_column,
-                    COUNT(*)
+                    COUNT(*) as count
       FROM transactions
       JOIN articles AS t USING(article_id) 
 	LEFT JOIN articles_product_type a1 ON article_field = 'product_type_name' and a1.product_type_no = t.product_type_no
@@ -66,7 +66,7 @@ BEGIN
 		WHEN 'postal_code' THEN postal_code
 					ELSE NULL
 	  END AS translated_column,
-				COUNT(*),
+				COUNT(*) as count,
                 prod_name
       FROM customers
       JOIN transactions USING(customer_id)
@@ -88,7 +88,7 @@ BEGIN
 	SELECT 
 		t_dat,
         customer_id,
-        ROUND((price * 590), 2),
+        ROUND((price * 590), 2) as price,
 		article_id,
 		product_code,
 		prod_name,
