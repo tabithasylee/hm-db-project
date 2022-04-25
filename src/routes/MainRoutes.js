@@ -13,7 +13,7 @@ const CustomerTransactionsPage = Loadable(lazy(() => import('views/pages/Custome
 const DemographicComparisonPage = Loadable(lazy(() => import('views/pages/DemographicComparisonPage')));
 const ArticleTransactionsPage = Loadable(lazy(() => import('views/pages/ArticleTransactionsPage')));
 
-// utilities routing
+// edit routing
 const InsertArticlePage = Loadable(lazy(() => import('views/utilities/Insert/InsertArticlePage')));
 const InsertCustomerPage = Loadable(lazy(() => import('views/utilities/Insert/InsertCustomerPage')));
 const InsertTransactionPage = Loadable(lazy(() => import('views/utilities/Insert/InsertTransactionPage')));
@@ -25,6 +25,9 @@ const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+
+// decomposed tables routing
+const ArticlesProductTypeTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesProductTypeTable')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -82,6 +85,10 @@ const MainRoutes = {
         {
             path: '/update/transaction',
             element: <UpdateTransactionPage />
+        },
+        {
+            path: '/decomposed/articles-product-type',
+            element: <ArticlesProductTypeTable />
         },
         {
             path: '/utils/util-typography',

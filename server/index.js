@@ -162,6 +162,26 @@ app.get('/demographiccomparison', async (req, res) => {
     });
 });
 
+// ROUTES FOR VIEWS
+
+app.get('/decomposed/articlesproducttype', async (req, res) => {
+    con.query('USE wardrobe;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure accessing database' });
+        }
+    });
+    con.query('SELECT * FROM articles_product_type_view; ', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure getting items' });
+        } else {
+            res.status(200).send(JSON.stringify(result));
+        }
+    });
+});
+
+
 // ROUTES FOR INSERT
 
 /**
