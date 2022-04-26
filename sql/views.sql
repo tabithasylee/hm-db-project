@@ -41,7 +41,7 @@ AS
 	SELECT 
 		t_dat,
         customer_id,
-        ROUND((price * 590), 2),
+        ROUND((price * 590), 2) as price,
 		article_id,
 		product_code,
 		prod_name,
