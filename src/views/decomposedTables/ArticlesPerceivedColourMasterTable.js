@@ -6,12 +6,12 @@ import DecomposedTable from './DecomposedTable';
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const ArticlesGraphicalAppearanceTable = ({ isLoading }) => {
+const ArticlesPerceivedColourMasterTable = ({ isLoading }) => {
     const [tableData, setTableData] = useState([]);
     useEffect(() => {
         const getTableData = async () => {
             console.log('trying to fetch');
-            const tableName = 'articles_graphical_appearance_view';
+            const tableName = 'articles_perceived_colour_master_view';
             const response = await fetch(`http://localhost:5000/decomposed?tableName=${tableName}`);
             const data = await response.json();
             setTableData(data);
@@ -23,19 +23,19 @@ const ArticlesGraphicalAppearanceTable = ({ isLoading }) => {
         <>
             <DecomposedTable
                 headers={[
-                    { label: 'Graphical Appearance No.', value: 'graphical_appearance_no' },
-                    { label: 'Graphical Appearance Name', value: 'graphical_appearance_name' }
+                    { label: 'Perceived Colour Master Id', value: 'perceived_colour_master_id' },
+                    { label: 'Perceived Colour Master Name', value: 'perceived_colour_master_name' }
                 ]}
                 isLoading={isLoading}
                 tableData={tableData}
-                title={'Articles Graphical Appearance Table'}
+                title={'Articles Perceived Colour Master Table'}
             />
         </>
     );
 };
 
-ArticlesGraphicalAppearanceTable.propTypes = {
+ArticlesPerceivedColourMasterTable.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default ArticlesGraphicalAppearanceTable;
+export default ArticlesPerceivedColourMasterTable;

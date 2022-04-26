@@ -62,7 +62,7 @@ const DecomposedTable = (props) => {
                                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell>ID</TableCell>
+                                                    <TableCell>Index</TableCell>
                                                     {props.headers.map((header, index) => (
                                                         <TableCell key={index} align="right">
                                                             {header.label}

@@ -29,7 +29,9 @@ const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons
 // decomposed tables routing
 const ArticlesProductTypeTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesProductTypeTable')));
 const ArticlesGraphicalAppearanceTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGraphicalAppearanceTable')));
-const ArticlesColourGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesColourGroup')));
+const ArticlesColourGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesColourGroupTable')));
+const ArticlesPerceivedColourValueTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesPerceivedColourValueTable')));
+const ArticlesPerceivedColourMasterTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesPerceivedColourMasterTable')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -99,6 +101,14 @@ const MainRoutes = {
         {
             path: '/decomposed/articles-colour-group',
             element: <ArticlesColourGroupTable />
+        },
+        {
+            path: '/decomposed/articles-perceived-colour-value',
+            element: <ArticlesPerceivedColourValueTable />
+        },
+        {
+            path: '/decomposed/articles-perceived-colour-master',
+            element: <ArticlesPerceivedColourMasterTable />
         },
         {
             path: '/utils/util-typography',

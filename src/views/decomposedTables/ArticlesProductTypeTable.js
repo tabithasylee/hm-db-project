@@ -23,7 +23,8 @@ const ArticlesProductTypeTable = ({ isLoading }) => {
     useEffect(() => {
         const getTableData = async () => {
             console.log('trying to fetch');
-            const response = await fetch(`http://localhost:5000/decomposed/articlesproducttype`);
+            const tableName = 'articles_product_type_view';
+            const response = await fetch(`http://localhost:5000/decomposed?tableName=${tableName}`);
             const data = await response.json();
             setTableData(data);
         };

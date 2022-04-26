@@ -33,6 +33,18 @@ const decomposedTables = {
             title: 'Articles Colour Group Table',
             type: 'item',
             url: '/decomposed/articles-colour-group'
+        },
+        {
+            id: 'decomposed_articles_perceived_colour_value',
+            title: 'Articles Perceived Colour Value Table',
+            type: 'item',
+            url: '/decomposed/articles-perceived-colour-value'
+        },
+        {
+            id: 'decomposed_articles_perceived_colour_master',
+            title: 'Articles Perceived Colour Master Table',
+            type: 'item',
+            url: '/decomposed/articles-perceived-colour-master'
         }
     ]
 };
