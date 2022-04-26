@@ -27,6 +27,12 @@ const decomposedTables = {
             title: 'Articles Graphical Appearance Table',
             type: 'item',
             url: '/decomposed/articles-graphical-appearance'
+        },
+        {
+            id: 'decomposed_articles_colour_group',
+            title: 'Articles Colour Group Table',
+            type: 'item',
+            url: '/decomposed/articles-colour-group'
         }
     ]
 };

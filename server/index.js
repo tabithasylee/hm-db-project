@@ -188,7 +188,24 @@ app.get('/decomposed/articlesgraphicalappearance', async (req, res) => {
             res.status(404).send({ error: 'failure accessing database' });
         }
     });
-    con.query('SELECT * FROM articles_graphical_appearance;', function (err, result) {
+    con.query('SELECT * FROM articles_graphical_appearance_view;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure getting items' });
+        } else {
+            res.status(200).send(JSON.stringify(result));
+        }
+    });
+});
+
+app.get('/decomposed/articlescolourgroup', async (req, res) => {
+    con.query('USE wardrobe;', function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(404).send({ error: 'failure accessing database' });
+        }
+    });
+    con.query('SELECT * FROM articles_colour_group_view;', function (err, result) {
         if (err) {
             console.log(err);
             res.status(404).send({ error: 'failure getting items' });
