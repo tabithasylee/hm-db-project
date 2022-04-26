@@ -71,14 +71,14 @@ const DecomposedTable = (props) => {
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                {props.articles.map((article, index) => (
+                                                {props.tableData.map((row, index) => (
                                                     <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                                         <TableCell component="th" scope="row">
                                                             {index}
                                                         </TableCell>
                                                         {props.headers.map((header, header_index) => (
                                                             <TableCell key={`${index}_${header_index}`} align="right">
-                                                                {article[header.value]}
+                                                                {row[header.value]}
                                                             </TableCell>
                                                         ))}
                                                     </TableRow>
@@ -99,7 +99,7 @@ const DecomposedTable = (props) => {
 DecomposedTable.propTypes = {
     isLoading: PropTypes.bool,
     headers: PropTypes.array,
-    articles: PropTypes.array,
+    tableData: PropTypes.array,
     title: PropTypes.string
 };
 

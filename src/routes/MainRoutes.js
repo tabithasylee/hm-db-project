@@ -28,6 +28,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons
 
 // decomposed tables routing
 const ArticlesProductTypeTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesProductTypeTable')));
+const ArticlesGraphicalAppearanceTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGraphicalAppearanceTable')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -89,6 +90,10 @@ const MainRoutes = {
         {
             path: '/decomposed/articles-product-type',
             element: <ArticlesProductTypeTable />
+        },
+        {
+            path: '/decomposed/articles-graphical-appearance',
+            element: <ArticlesGraphicalAppearanceTable />
         },
         {
             path: '/utils/util-typography',

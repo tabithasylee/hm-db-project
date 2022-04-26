@@ -21,13 +21,13 @@ const decomposedTables = {
             title: 'Articles Product Type Table',
             type: 'item',
             url: '/decomposed/articles-product-type'
+        },
+        {
+            id: 'decomposed_articles_graphical_appearance',
+            title: 'Articles Graphical Appearance Table',
+            type: 'item',
+            url: '/decomposed/articles-graphical-appearance'
         }
-        // {
-        //     id: 'decomposed-customer',
-        //     title: 'Insert Customer',
-        //     type: 'item',
-        //     url: '/decomposed/customer'
-        // }
     ]
 };
 

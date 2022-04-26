@@ -1,24 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import * as React from 'react';
 
 import DecomposedTable from './DecomposedTable';
-
-// material-ui
-import { useTheme } from '@mui/material/styles';
-import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
-
-import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
-
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
@@ -35,16 +19,15 @@ const rows = [
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
 const ArticlesProductTypeTable = ({ isLoading }) => {
-    const [articles, setArticles] = useState([]);
+    const [tableData, setTableData] = useState([]);
     useEffect(() => {
-        const getAllArticles = async () => {
+        const getTableData = async () => {
             console.log('trying to fetch');
             const response = await fetch(`http://localhost:5000/decomposed/articlesproducttype`);
             const data = await response.json();
-            setArticles(data);
+            setTableData(data);
         };
-        getAllArticles();
-        console.log(articles);
+        getTableData();
     }, []);
 
     return (
@@ -56,7 +39,7 @@ const ArticlesProductTypeTable = ({ isLoading }) => {
                     { label: 'Product Group Name', value: 'product_group_name' }
                 ]}
                 isLoading={isLoading}
-                articles={articles}
+                tableData={tableData}
                 title={'Articles Product Type Table'}
             />
         </>
