@@ -1,6 +1,7 @@
 USE wardrobe; 
 
 # Given a customer id, use this procedure to get all of their transactions. 
+# PARAM: p_customer_id VARCHAR(64) the customer_id of the customer to look up
 DROP PROCEDURE IF EXISTS get_customer_transactions;
 DELIMITER // 
 CREATE PROCEDURE get_customer_transactions(IN p_customer_id VARCHAR(64))
@@ -16,6 +17,8 @@ CALL get_customer_transactions("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d2
 
 # Given a customer_id and a specific article field,
 # We can see how many of each article field a customer has purchased. 
+# PARAM: p_customer_id VARCHAR(64) the customer_id of the customer to look up
+# PARAM: article_field VARCHAR(64) the article_id of the customer to look up
 DROP PROCEDURE IF EXISTS get_customer_article_summary;
 DELIMITER // 
 CREATE PROCEDURE get_customer_article_summary(IN p_customer_id VARCHAR(64), IN article_field VARCHAR(64))
@@ -53,6 +56,8 @@ CALL get_customer_article_summary("00000dbacae5abe5e23885899a1fa44253a17956c6d1c
 # For a specific article, given the article_id,
 # This returns the aggregate of the demographic of the customer that purchased that item.
 # So for example, we can use this to see which age group, or member status is most likely to buy a strap top.
+# PARAM: product_id VARCHAR(64) the article_id of the product to look up
+# PARAM: customer_field VARCHAR(64) the customer_field to find the aggregate for
 DROP PROCEDURE IF EXISTS compare_article_customer_demographic;
 DELIMITER // 
 CREATE PROCEDURE compare_article_customer_demographic(IN product_id VARCHAR(64), IN customer_field VARCHAR(64))
@@ -81,6 +86,7 @@ CALL compare_article_customer_demographic("0108775015", "age");
 
 # For a specific article, given the article_id,
 # Return all the transactions that contain this item and the corresponding price information. 
+# PARAM: product_id VARCHAR(64) the article_id of the product to return the transactions for
 DROP PROCEDURE IF EXISTS transactions_from_article;
 DELIMITER // 
 CREATE PROCEDURE transactions_from_article(IN product_id VARCHAR(64))

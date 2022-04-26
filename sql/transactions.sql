@@ -1,6 +1,20 @@
-	USE wardrobe; 
+USE wardrobe; 
 
-# A transaction to insert an article
+# A procedure that uses a transaction to insert an article. Rolls back if failed, only commits on success.
+# PARAM: i_article_id VARCHAR(10)
+# PARAM: i_product_code VARCHAR(7)
+# PARAM: i_prod_name VARCHAR(255)
+# PARAM: i_product_type_no INT
+# PARAM: i_graphical_appearance_no VARCHAR(7)
+# PARAM: i_colour_group_code SMALLINT
+# PARAM: i_perceived_colour_value_id SMALLINT
+# PARAM: i_perceived_colour_master_id SMALLINT
+# PARAM: i_department_no INT
+# PARAM: i_index_code VARCHAR(1)
+# PARAM: i_index_group_no SMALLINT
+# PARAM: i_section_no SMALLINT
+# PARAM: i_garment_group_no SMALLINT
+# PARAM: i_detail_desc VARCHAR(1000)
 DROP PROCEDURE IF EXISTS insert_article;
 DELIMITER // 
 CREATE PROCEDURE insert_article(
@@ -43,7 +57,14 @@ DELIMITER ;
 CALL insert_article("0108723457", "0108775", "Strap top", 253, "1010016", 9, 4, 5, 1676, "A", 1, 16, 1002, "Testing");
 SELECT * FROM articles WHERE article_id = "0108723457";
 
-# A transaction to insert an customer
+# A procedure that uses a transaction to insert an customer. Rolls back if failed, only commits on success.
+# PARAM: i_customer_id VARCHAR(64)
+# PARAM: i_fn VARCHAR(1)
+# PARAM: i_active VARCHAR(1)
+# PARAM: i_club_member_status VARCHAR(10)
+# PARAM: i_fashion_news_frequency VARCHAR(10)
+# PARAM: i_age SMALLINT
+# PARAM: i_postal_code VARCHAR(64)
 DROP PROCEDURE IF EXISTS insert_customer;
 DELIMITER // 
 CREATE PROCEDURE insert_customer(
@@ -76,7 +97,12 @@ DELIMITER ;
 CALL insert_customer("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123", 1, 1, "ACTIVE", "NONE", 49, "52043ee2162cf5aa7ee79974281641c6f11a68d276429a91f8ca0d4b6efa8100");
 SELECT * FROM customers WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 
-# A transaction to insert an transaction
+# A procedure that uses a transaction to insert an customer. Rolls back if failed, only commits on success.
+# PARAM: i_t_dat DATE
+# PARAM: i_customer_id VARCHAR(64)
+# PARAM: i_article_id VARCHAR(10)
+# PARAM: i_price DECIMAL(19, 18)
+# PARAM: i_sales_channel_id VARCHAR(1)
 DROP PROCEDURE IF EXISTS insert_transaction;
 DELIMITER // 
 CREATE PROCEDURE insert_transaction(
@@ -114,7 +140,21 @@ CALL insert_transaction(CAST("2018-09-20" AS DATE),"00000dbacae5abe5e23885899a1f
 SELECT * FROM transactions WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 
 
-# A transaction to update an article
+# A procedure that uses a transaction to update an article. Rolls back if failed, only commits on success.
+# PARAM: i_article_id VARCHAR(10)
+# PARAM: i_product_code VARCHAR(7)
+# PARAM: i_prod_name VARCHAR(255)
+# PARAM: i_product_type_no INT
+# PARAM: i_graphical_appearance_no VARCHAR(7)
+# PARAM: i_colour_group_code SMALLINT
+# PARAM: i_perceived_colour_value_id SMALLINT
+# PARAM: i_perceived_colour_master_id SMALLINT
+# PARAM: i_department_no INT
+# PARAM: i_index_code VARCHAR(1)
+# PARAM: i_index_group_no SMALLINT
+# PARAM: i_section_no SMALLINT
+# PARAM: i_garment_group_no SMALLINT
+# PARAM: i_detail_desc VARCHAR(1000)
 DROP PROCEDURE IF EXISTS update_article;
 DELIMITER // 
 CREATE PROCEDURE update_article(
@@ -168,8 +208,12 @@ DELIMITER ;
 CALL update_article("0108723457", "0108775", "Strap top", 253, "1010016", 9, 4, 5, 1676, "A", 1, 16, 1002, "Testing edit");
 SELECT * FROM articles WHERE article_id = "0108723457";
 
-
-# A transaction to update an customer
+# A procedure that uses a transaction to update an customer. Rolls back if failed, only commits on success.
+# PARAM: i_t_dat DATE
+# PARAM: i_customer_id VARCHAR(64)
+# PARAM: i_article_id VARCHAR(10)
+# PARAM: i_price DECIMAL(19, 18)
+# PARAM: i_sales_channel_id VARCHAR(1)
 DROP PROCEDURE IF EXISTS update_customer;
 DELIMITER // 
 CREATE PROCEDURE update_customer(
@@ -208,7 +252,13 @@ DELIMITER ;
 CALL update_customer("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123", 1, 1, "ACTIVE", "SOME", 49, "52043ee2162cf5aa7ee79974281641c6f11a68d276429a91f8ca0d4b6efa8100");
 SELECT * FROM customers WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 
-# A transaction to update an transaction
+# A procedure that uses a transaction to insert an transaction. Rolls back if failed, only commits on success.
+# PARAM: i_t_id INT
+# PARAM: i_t_dat DATE
+# PARAM: i_customer_id VARCHAR(64)
+# PARAM: i_article_id VARCHAR(10)
+# PARAM: i_price DECIMAL(19, 18)
+# PARAM: i_sales_channel_id VARCHAR(1)
 DROP PROCEDURE IF EXISTS update_transaction;
 DELIMITER // 
 CREATE PROCEDURE update_transaction(

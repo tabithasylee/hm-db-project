@@ -13,7 +13,7 @@ const icons = {
 
 const decomposedTables = {
     id: 'decomposedTables',
-    title: 'Decomposed Tables',
+    title: 'View Tables',
     type: 'group',
     children: [
         {

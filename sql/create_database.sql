@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS wardrobe;
 CREATE DATABASE wardrobe;
 USE wardrobe;
 
+# Create articles megatable
 CREATE TABLE IF NOT EXISTS articles_mega (
 	article_id VARCHAR(10) NOT NULL, # All article ids are strings of 10 characters
 	product_code VARCHAR(7) NOT NULL, # All product ids are strings of 10 characters
@@ -30,7 +31,8 @@ CREATE TABLE IF NOT EXISTS articles_mega (
     detail_desc VARCHAR(1000)
 ) ENGINE=InnoDB;
 
-# We can decompose each of the "no" or "code" values further, as they correspond with the category name
+# We can decompose each of the "no" or "code" values further, as they correspond with the category name.
+# Repeat for all of them
 CREATE TABLE IF NOT EXISTS articles_product_type (
     product_type_no INT, 
     product_type_name VARCHAR(50),
@@ -182,6 +184,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 		ON UPDATE NO ACTION 
 ) ENGINE=InnoDB;
 
+# Load articles data into megatable
 LOAD DATA
     INFILE '/Users/alice/Documents/School/2021-2022/CS3265_Databases/project2/articles.csv'
     INTO TABLE articles_mega
@@ -219,7 +222,7 @@ LOAD DATA
         detail_desc
     );
     
-
+# Load data into decomposed tables for articles
 INSERT INTO articles_product_type
 (SELECT DISTINCT
 	product_type_no,
@@ -280,7 +283,8 @@ INSERT INTO articles_garment_group
 	garment_group_no,
     garment_group_name
 FROM articles_mega);
-    
+
+# Load data into articles table
 INSERT INTO articles
 (SELECT
 	article_id,
@@ -299,6 +303,7 @@ INSERT INTO articles
     detail_desc
 FROM articles_mega);
 
+# Load customer data
 LOAD DATA
     INFILE '/Users/alice/Documents/School/2021-2022/CS3265_Databases/project2/customers.csv'
     INTO TABLE customers
@@ -318,6 +323,7 @@ LOAD DATA
     )
     SET fn = IF(@fn, "1", NULL), active = IF(@active, "1", NULL), age = IF(@age, @age, NULL);
     
+# Load transactions data
 LOAD DATA
     INFILE 'D:/Program_Files/wamp64/tmp/transactions.csv'
     INTO TABLE transactions
