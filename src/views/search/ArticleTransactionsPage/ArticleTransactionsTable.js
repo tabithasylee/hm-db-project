@@ -6,7 +6,8 @@ import { useTheme } from '@mui/material/styles';
 import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { gridSpacing } from 'store/constant';
 
 import * as React from 'react';
@@ -17,18 +18,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9)
-];
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
@@ -48,7 +37,9 @@ const ArticleTransactionsTable = ({ isLoading, tableData }) => {
     return (
         <>
             {isLoading ? (
-                <SkeletonPopularCard />
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <CircularProgress />
+                </Box>
             ) : (
                 <MainCard content={false}>
                     <CardContent>
@@ -67,6 +58,7 @@ const ArticleTransactionsTable = ({ isLoading, tableData }) => {
                                                     <TableCell align="right">customer id</TableCell>
                                                     <TableCell align="right">product name</TableCell>
                                                     <TableCell align="right">price</TableCell>
+                                                    <TableCell align="right">detailed description</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -79,6 +71,7 @@ const ArticleTransactionsTable = ({ isLoading, tableData }) => {
                                                         <TableCell align="right">{row.customer_id}</TableCell>
                                                         <TableCell align="right">{row.prod_name}</TableCell>
                                                         <TableCell align="right">{row.price}</TableCell>
+                                                        <TableCell align="right">{row.detail_desc}</TableCell>
                                                     </TableRow>
                                                 ))}
                                             </TableBody>

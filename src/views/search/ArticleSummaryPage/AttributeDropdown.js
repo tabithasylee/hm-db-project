@@ -15,35 +15,43 @@ const StyledDropdown = styled(TextField, { shouldForwardProp })(({ theme }) => (
 // attribute options
 const attributes = [
     {
-        value: 'active',
-        label: 'Active'
+        value: 'product_type_name',
+        label: 'Product Type Name'
     },
     {
-        value: 'club_member_status',
-        label: 'Club Member Status'
+        value: 'graphical_appearance_name',
+        label: 'Graphical Apperance'
     },
     {
-        value: 'fashion_news_frequency',
-        label: 'Fashion News Frequency'
+        value: 'colour_group_name',
+        label: 'Colour Group'
     },
     {
-        value: 'age',
-        label: 'Age'
+        value: 'perceived_colour_value_name',
+        label: 'Perceived Colour Value'
     },
     {
-        value: 'postal_code',
-        label: 'Postal Code'
+        value: 'perceived_colour_master_name',
+        label: 'Perceived Colour Master'
+    },
+    {
+        value: 'department_name',
+        label: 'Department'
+    },
+    {
+        value: 'section_name',
+        label: 'Section'
+    },
+    {
+        value: 'garment_group_name',
+        label: 'Garment Group'
     }
 ];
 
 const AttributeDropdown = (props) => {
-    const [value, setValue] = useState('');
-
     const handleChange = (event) => {
-        if (event?.target.value) {
-            setValue(event?.target.value);
-            props.setAttribute(event?.target.value);
-        }
+        console.log(event.target.value);
+        props.setAttribute(event.target.value);
     };
 
     return (
@@ -54,7 +62,7 @@ const AttributeDropdown = (props) => {
                         id="outlined-select-currency-native"
                         select
                         fullWidth
-                        value={value}
+                        value={props.attribute}
                         onChange={handleChange}
                         SelectProps={{
                             native: true

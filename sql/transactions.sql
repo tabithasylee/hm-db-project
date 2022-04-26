@@ -93,7 +93,7 @@ BEGIN
 END // 
 DELIMITER ;
 
-# Testing insert transaction
+# Testing insert customer
 CALL insert_customer("00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123", 1, 1, "ACTIVE", "NONE", 49, "52043ee2162cf5aa7ee79974281641c6f11a68d276429a91f8ca0d4b6efa8100");
 SELECT * FROM customers WHERE customer_id = "00000dbacae5abe5e23885899a1fa44253a17956c6d1c3d25f88aa139fdfd123";
 

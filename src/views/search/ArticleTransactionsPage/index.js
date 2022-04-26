@@ -4,39 +4,30 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 
 // project imports
-import ArticleSummaryTable from './ArticleSummaryTable';
-import AttributeDropdown from './AttributeDropdown';
+import ArticleTransactionsTable from './ArticleTransactionsTable';
 import TableSearchBar from '../TableSearchBar';
 import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const ArticleSummaryPage = () => {
-    const [isLoading, setLoading] = useState(true);
-    const [customerId, setCustomerId] = useState('');
-    const [attribute, setAttribute] = useState('');
-    const [tableData, setTableData] = useState({ attribute: '', data: [] });
+const ArticleTransactionsPage = () => {
+    const [isLoading, setLoading] = useState(false);
+    const [articleId, setArticleId] = useState('');
+    const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
-        setLoading(false);
-    }, []);
-
-    useEffect(() => {
-        console.log(customerId);
-    }, [customerId]);
-
-    useEffect(() => {
-        console.log(attribute);
-    }, [attribute]);
+        console.log(articleId);
+    }, [articleId]);
 
     const handleSearchBtnClick = () => {
         const getTableData = async () => {
             console.log('trying to fetch search results');
-            const response = await fetch(`http://localhost:5000/articlesummary?customerId=${customerId}&attribute=${attribute}`);
+            const response = await fetch(`http://localhost:5000/articletransactions?articleId=${articleId}`);
             const data = await response.json();
-            setTableData({ attribute: attribute, data: data[0] });
+            setTableData(data[0]);
         };
-        getTableData();
+        setLoading(true);
+        getTableData().then(() => setLoading(false));
     };
 
     return (
@@ -45,18 +36,14 @@ const ArticleSummaryPage = () => {
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={12}>
                         <Typography variant="body" sx={{ paddingLeft: 2 }}>
-                            Given a customer_id and a specific article field, we can see how many of each article field a customer has
-                            purchased.
+                            Enter a article id to see their transactions.
                         </Typography>
                     </Grid>
                     <Grid item xs={12} md={12}>
                         <Typography variant="h4" sx={{ paddingLeft: 2 }}>
-                            Customer Id
+                            Article Id
                         </Typography>
-                        <TableSearchBar setCustomerId={setCustomerId} />
-                    </Grid>
-                    <Grid item xs={12} md={12}>
-                        <AttributeDropdown setAttribute={setAttribute} />
+                        <TableSearchBar setState={setArticleId} />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button size="large" color="secondary" variant="contained" onClick={handleSearchBtnClick}>
@@ -64,7 +51,7 @@ const ArticleSummaryPage = () => {
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <ArticleSummaryTable isLoading={isLoading} attributeName={tableData.attribute} tableData={tableData.data} />
+                        <ArticleTransactionsTable isLoading={isLoading} tableData={tableData} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -72,4 +59,4 @@ const ArticleSummaryPage = () => {
     );
 };
 
-export default ArticleSummaryPage;
+export default ArticleTransactionsPage;
