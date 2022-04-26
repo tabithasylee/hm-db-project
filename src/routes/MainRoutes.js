@@ -32,6 +32,11 @@ const ArticlesGraphicalAppearanceTable = Loadable(lazy(() => import('views/decom
 const ArticlesColourGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesColourGroupTable')));
 const ArticlesPerceivedColourValueTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesPerceivedColourValueTable')));
 const ArticlesPerceivedColourMasterTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesPerceivedColourMasterTable')));
+const ArticlesPerceivedDepartmentTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesPerceivedDepartmentTable')));
+const ArticlesIndexTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesIndexTable')));
+const ArticlesIndexGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesIndexGroupTable')));
+const ArticlesSectionTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesSectionTable')));
+const ArticlesGarmentGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGarmentGroupTable')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -109,6 +114,26 @@ const MainRoutes = {
         {
             path: '/decomposed/articles-perceived-colour-master',
             element: <ArticlesPerceivedColourMasterTable />
+        },
+        {
+            path: '/decomposed/articles-perceived-department',
+            element: <ArticlesPerceivedDepartmentTable />
+        },
+        {
+            path: '/decomposed/articles-index',
+            element: <ArticlesIndexTable />
+        },
+        {
+            path: '/decomposed/articles-index-group',
+            element: <ArticlesIndexGroupTable />
+        },
+        {
+            path: '/decomposed/articles-section',
+            element: <ArticlesSectionTable />
+        },
+        {
+            path: '/decomposed/articles-garment-group',
+            element: <ArticlesGarmentGroupTable />
         },
         {
             path: '/utils/util-typography',

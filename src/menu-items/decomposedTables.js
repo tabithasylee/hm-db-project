@@ -45,6 +45,36 @@ const decomposedTables = {
             title: 'Articles Perceived Colour Master Table',
             type: 'item',
             url: '/decomposed/articles-perceived-colour-master'
+        },
+        {
+            id: 'decomposed_articles_perceived_department',
+            title: 'Articles Perceived Department Table',
+            type: 'item',
+            url: '/decomposed/articles-perceived-department'
+        },
+        {
+            id: 'decomposed_articles_index',
+            title: 'Articles Index Table',
+            type: 'item',
+            url: '/decomposed/articles-index'
+        },
+        {
+            id: 'decomposed_articles_index_group',
+            title: 'Articles Index Group Table',
+            type: 'item',
+            url: '/decomposed/articles-index-group'
+        },
+        {
+            id: 'decomposed_articles_section',
+            title: 'Articles Section Table',
+            type: 'item',
+            url: '/decomposed/articles-section'
+        },
+        {
+            id: 'decomposed_articles_garment_group',
+            title: 'Articles Garment Group Table',
+            type: 'item',
+            url: '/decomposed/articles-garment-group'
         }
     ]
 };

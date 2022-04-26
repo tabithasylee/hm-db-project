@@ -11,7 +11,7 @@ const icons = {
 const pages = {
     id: 'search-tables',
     title: 'Search Tables',
-    caption: 'get aggregate and analytic details',
+    caption: 'get aggregate details and analytics',
     type: 'group',
     children: [
         {
