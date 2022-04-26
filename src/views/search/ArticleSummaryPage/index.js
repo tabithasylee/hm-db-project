@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 
 // project imports
-import DemographicComparisonTable from './DemographicComparisonTable';
-import DemographicDropdown from './DemographicDropdown';
+import ArticleSummaryTable from './ArticleSummaryTable';
+import AttributeDropdown from './AttributeDropdown';
 import TableSearchBar from '../TableSearchBar';
 import { gridSpacing } from 'store/constant';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const DemographicComparisonPage = () => {
+const ArticleSummaryPage = () => {
     const [isLoading, setLoading] = useState(true);
-    const [productId, setProductId] = useState('');
-    const [attribute, setAttribute] = useState('');
+    const [customerId, setCustomerId] = useState('');
+    const [attribute, setAttribute] = useState('product_type_name');
     const [tableData, setTableData] = useState({ attribute: '', data: [] });
 
     useEffect(() => {
@@ -22,13 +22,17 @@ const DemographicComparisonPage = () => {
     }, []);
 
     useEffect(() => {
+        console.log(customerId);
+    }, [customerId]);
+
+    useEffect(() => {
         console.log(attribute);
     }, [attribute]);
 
     const handleSearchBtnClick = () => {
         const getTableData = async () => {
-            console.log('trying to fetch search results');
-            const response = await fetch(`http://localhost:5000/demographiccomparison?productId=${productId}&attribute=${attribute}`);
+            console.log(`trying to fetch search results of ${customerId} and ${attribute}`);
+            const response = await fetch(`http://localhost:5000/articlesummary?customerId=${customerId}&attribute=${attribute}`);
             const data = await response.json();
             setTableData({ attribute: attribute, data: data[0] });
         };
@@ -41,18 +45,18 @@ const DemographicComparisonPage = () => {
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={12}>
                         <Typography variant="body" sx={{ paddingLeft: 2 }}>
-                            For a specific article, view the aggregate of the demographic of the customer that purchased that item. For
-                            example, view which age group is most likely to buy a strap top.
+                            Given a customer_id and a specific article field, we can see how many of each article field a customer has
+                            purchased.
                         </Typography>
                     </Grid>
                     <Grid item xs={12} md={12}>
                         <Typography variant="h4" sx={{ paddingLeft: 2 }}>
-                            Product Id
+                            Customer Id
                         </Typography>
-                        <TableSearchBar setState={setProductId} />
+                        <TableSearchBar setState={setCustomerId} />
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <DemographicDropdown setAttribute={setAttribute} />
+                        <AttributeDropdown attribute={attribute} setAttribute={setAttribute} />
                     </Grid>
                     <Grid item xs={12} md={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Button size="large" color="secondary" variant="contained" onClick={handleSearchBtnClick}>
@@ -60,7 +64,7 @@ const DemographicComparisonPage = () => {
                         </Button>
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <DemographicComparisonTable isLoading={isLoading} attributeName={tableData.attribute} tableData={tableData.data} />
+                        <ArticleSummaryTable isLoading={isLoading} attributeName={tableData.attribute} tableData={tableData.data} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -68,4 +72,4 @@ const DemographicComparisonPage = () => {
     );
 };
 
-export default DemographicComparisonPage;
+export default ArticleSummaryPage;

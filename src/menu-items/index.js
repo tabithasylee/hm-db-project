@@ -1,5 +1,5 @@
 import dashboard from './dashboard';
-import pages from './pages';
+import pages from './search';
 import edit from './edit';
 import decomposedTables from './decomposedTables';
 

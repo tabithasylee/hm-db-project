@@ -8,23 +8,18 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // pages routing
-const ArticleSummaryPage = Loadable(lazy(() => import('views/pages/ArticleSummaryPage')));
-const CustomerTransactionsPage = Loadable(lazy(() => import('views/pages/CustomerTransactionsPage')));
-const DemographicComparisonPage = Loadable(lazy(() => import('views/pages/DemographicComparisonPage')));
-const ArticleTransactionsPage = Loadable(lazy(() => import('views/pages/ArticleTransactionsPage')));
+const ArticleSummaryPage = Loadable(lazy(() => import('views/search/ArticleSummaryPage')));
+const CustomerTransactionsPage = Loadable(lazy(() => import('views/search/CustomerTransactionsPage')));
+const DemographicComparisonPage = Loadable(lazy(() => import('views/search/DemographicComparisonPage')));
+const ArticleTransactionsPage = Loadable(lazy(() => import('views/search/ArticleTransactionsPage')));
 
 // edit routing
-const InsertArticlePage = Loadable(lazy(() => import('views/utilities/Insert/InsertArticlePage')));
-const InsertCustomerPage = Loadable(lazy(() => import('views/utilities/Insert/InsertCustomerPage')));
-const InsertTransactionPage = Loadable(lazy(() => import('views/utilities/Insert/InsertTransactionPage')));
-const UpdateArticlePage = Loadable(lazy(() => import('views/utilities/Update/UpdateArticlePage')));
-const UpdateCustomerPage = Loadable(lazy(() => import('views/utilities/Update/UpdateCustomerPage')));
-const UpdateTransactionPage = Loadable(lazy(() => import('views/utilities/Update/UpdateTransactionPage')));
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+const InsertArticlePage = Loadable(lazy(() => import('views/edit/Insert/InsertArticlePage')));
+const InsertCustomerPage = Loadable(lazy(() => import('views/edit/Insert/InsertCustomerPage')));
+const InsertTransactionPage = Loadable(lazy(() => import('views/edit/Insert/InsertTransactionPage')));
+const UpdateArticlePage = Loadable(lazy(() => import('views/edit/Update/UpdateArticlePage')));
+const UpdateCustomerPage = Loadable(lazy(() => import('views/edit/Update/UpdateCustomerPage')));
+const UpdateTransactionPage = Loadable(lazy(() => import('views/edit/Update/UpdateTransactionPage')));
 
 // decomposed tables routing
 const ArticlesProductTypeTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesProductTypeTable')));
@@ -38,9 +33,6 @@ const ArticlesIndexGroupTable = Loadable(lazy(() => import('views/decomposedTabl
 const ArticlesSectionTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesSectionTable')));
 const ArticlesGarmentGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGarmentGroupTable')));
 const TransactionsViewTable = Loadable(lazy(() => import('views/decomposedTables/TransactionsViewTable')));
-
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -139,30 +131,6 @@ const MainRoutes = {
         {
             path: '/decomposed/transactions-view',
             element: <TransactionsViewTable />
-        },
-        {
-            path: '/utils/util-typography',
-            element: <UtilsTypography />
-        },
-        {
-            path: '/utils/util-color',
-            element: <UtilsColor />
-        },
-        {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />
-        },
-        {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
-        },
-        {
-            path: '/sample-page',
-            element: <SamplePage />
         }
     ]
 };
