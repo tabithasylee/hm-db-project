@@ -84,7 +84,12 @@ const UpdateCustomerPage = () => {
                         <Typography variant="h4" sx={{ px: 2, paddingTop: 4 }}>
                             Club Member Status
                         </Typography>
-                        <InputDropdown id="club_member_status" setState={setState} state={state} options={['ACTIVE', 'PRE-CREATE']} />
+                        <InputDropdown
+                            id="club_member_status"
+                            setState={setState}
+                            state={state}
+                            options={['ACTIVE', 'PRE-CREATE', 'LEFT CLUB']}
+                        />
                         <Typography variant="h4" sx={{ px: 2, paddingTop: 4 }}>
                             Fashion News Frequency
                         </Typography>

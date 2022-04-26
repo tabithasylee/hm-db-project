@@ -34,9 +34,6 @@ const ArticlesSectionTable = Loadable(lazy(() => import('views/decomposedTables/
 const ArticlesGarmentGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGarmentGroupTable')));
 const TransactionsViewTable = Loadable(lazy(() => import('views/decomposedTables/TransactionsViewTable')));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
-
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
