@@ -37,6 +37,7 @@ const ArticlesIndexTable = Loadable(lazy(() => import('views/decomposedTables/Ar
 const ArticlesIndexGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesIndexGroupTable')));
 const ArticlesSectionTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesSectionTable')));
 const ArticlesGarmentGroupTable = Loadable(lazy(() => import('views/decomposedTables/ArticlesGarmentGroupTable')));
+const TransactionsViewTable = Loadable(lazy(() => import('views/decomposedTables/TransactionsViewTable')));
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -134,6 +135,10 @@ const MainRoutes = {
         {
             path: '/decomposed/articles-garment-group',
             element: <ArticlesGarmentGroupTable />
+        },
+        {
+            path: '/decomposed/transactions-view',
+            element: <TransactionsViewTable />
         },
         {
             path: '/utils/util-typography',

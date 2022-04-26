@@ -47,51 +47,47 @@ const DecomposedTable = (props) => {
 
     return (
         <>
-            {props.isLoading ? (
-                <SkeletonPopularCard />
-            ) : (
-                <MainCard content={false}>
-                    <CardContent>
-                        <Grid container spacing={gridSpacing}>
-                            <Grid item xs={12}>
-                                <Grid container alignContent="center" justifyContent="space-between">
-                                    <Grid item>
-                                        <Typography variant="h4">{props.title}</Typography>
-                                    </Grid>
-                                    <TableContainer component={Paper}>
-                                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Index</TableCell>
-                                                    {props.headers.map((header, index) => (
-                                                        <TableCell key={index} align="right">
-                                                            {header.label}
+            <MainCard content={false}>
+                <CardContent>
+                    <Grid container spacing={gridSpacing}>
+                        <Grid item xs={12}>
+                            <Grid container alignContent="center" justifyContent="space-between">
+                                <Grid item>
+                                    <Typography variant="h4">{props.title}</Typography>
+                                </Grid>
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Index</TableCell>
+                                                {props.headers.map((header, index) => (
+                                                    <TableCell key={index} align="right">
+                                                        {header.label}
+                                                    </TableCell>
+                                                ))}
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {props.tableData.map((row, index) => (
+                                                <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                    <TableCell component="th" scope="row">
+                                                        {index}
+                                                    </TableCell>
+                                                    {props.headers.map((header, header_index) => (
+                                                        <TableCell key={`${index}_${header_index}`} align="right">
+                                                            {row[header.value]}
                                                         </TableCell>
                                                     ))}
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {props.tableData.map((row, index) => (
-                                                    <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                                        <TableCell component="th" scope="row">
-                                                            {index}
-                                                        </TableCell>
-                                                        {props.headers.map((header, header_index) => (
-                                                            <TableCell key={`${index}_${header_index}`} align="right">
-                                                                {row[header.value]}
-                                                            </TableCell>
-                                                        ))}
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </Grid>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
                             </Grid>
                         </Grid>
-                    </CardContent>
-                </MainCard>
-            )}
+                    </Grid>
+                </CardContent>
+            </MainCard>
         </>
     );
 };
