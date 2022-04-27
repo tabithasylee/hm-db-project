@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS articles_mega (
     product_type_no INT,
     product_type_name VARCHAR(50),
     product_group_name VARCHAR(50),
-	graphical_appearance_no VARCHAR(7) NOT NULL,
+	graphical_appearance_no VARCHAR(7),
     graphical_appearance_name VARCHAR(50),
     colour_group_code SMALLINT,
     colour_group_name VARCHAR(50),
@@ -96,11 +96,11 @@ CREATE TABLE IF NOT EXISTS articles_garment_group (
 
 # Create new decomposed table with foreign keys to the ones above
 CREATE TABLE IF NOT EXISTS articles (
-	article_id VARCHAR(10) NOT NULL,
-	product_code VARCHAR(7) NOT NULL,
+	article_id VARCHAR(10) NOT NULL, # All article ids are strings of 10 characters
+	product_code VARCHAR(7) NOT NULL, # All product ids are strings of 7 characters
     prod_name VARCHAR(255),
     product_type_no INT,
-	graphical_appearance_no VARCHAR(7) NOT NULL,
+	graphical_appearance_no VARCHAR(7),
     colour_group_code SMALLINT,
     perceived_colour_value_id SMALLINT,
     perceived_colour_master_id SMALLINT,
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS articles (
     index_group_no SMALLINT,
     section_no SMALLINT,
     garment_group_no SMALLINT,
-    detail_desc VARCHAR(1000),
+    detail_desc VARCHAR(1000), # These descriptions are often long
     PRIMARY KEY(article_id),
 	CONSTRAINT fk_product_type_group FOREIGN KEY (product_type_no)
 		REFERENCES articles_product_type(product_type_no)
