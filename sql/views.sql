@@ -34,7 +34,7 @@ AS
 
 SELECT * FROM megatable_view_name;
 
-# Select a view of 50 random transactions and the corresponding article information. 
+# Select a view of transactions corresponding to 25 random articles. 
 DROP VIEW IF EXISTS transaction_view;
 CREATE VIEW transaction_view
 AS 
@@ -58,7 +58,7 @@ AS
 		garment_group_name,
 		detail_desc
 		FROM transactions
-	JOIN (SELECT * FROM articles ORDER BY RAND() LIMIT 50) AS a USING (article_id)
+	JOIN (SELECT * FROM articles ORDER BY RAND() LIMIT 25) AS a USING (article_id)
 	JOIN articles_product_type USING (product_type_no)
 	JOIN articles_graphical_appearance USING (graphical_appearance_no)
 	JOIN articles_colour_group USING (colour_group_code)
